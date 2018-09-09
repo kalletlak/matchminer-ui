@@ -40,18 +40,19 @@ function browserSyncInit(baseDir, browser) {
 	}
 	var config = require(path.join('..', conf.paths.properties, 'config.json'));
 	var environment = gutil.env.env ? gutil.env.env : 'dev';
+	var isSecure = config[environment].ENV.samlAuthentication;
 
 	var matchMinerProxy = proxy('/api', {
 		target: config[environment].ENV.api.host,
 		changeOrigin: true,
 		logLevel: 'debug',
-		agent: https.globalAgent,
-		secure: true,
-		https: true,
-		ssl: {
-			key: fs.readFileSync(config[environment].ENV.certificate.key, 'utf8'),
-			cert: fs.readFileSync(config[environment].ENV.certificate.cert, 'utf8')
-		}
+		secure: isSecure,
+		https: isSecure,
+		//agent: https.globalAgent,
+		// ssl: {
+		// 	key: fs.readFileSync(config[environment].ENV.certificate.key, 'utf8'),
+		// 	cert: fs.readFileSync(config[environment].ENV.certificate.cert, 'utf8')
+		// }
 	});
 
 	var elasticSearchProxy = proxy('/elasticsearch', {

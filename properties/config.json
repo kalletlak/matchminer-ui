@@ -16,10 +16,6 @@
         "token" : "fb4d6830-d3aa-481b-bcd6-270d69790e11",
         "user_id" : "577cf6ef2b9920002cef0337"
       },
-      "certificate" : {
-        "key": "../certificates/matchminer.key",
-        "cert": "../certificates/matchminer.crt"
-      },
       "sessionTimeout": {
         "idleAllowed": 2700,
         "idleCountdown": 30
